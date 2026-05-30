@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Qua Cầu 3D - Bản Đặc Biệt</title>
+    <!-- Thư viện Three.js, OrbitControls và GSAP qua CDN (Phiên bản non-module để tương thích chạy offline) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <canvas id="bg-canvas"></canvas>
+        
+        <div id="ui-layer">
+            <header>
+                <h1>BRIDGE CROSSING 3D</h1>
+                <p style="font-size: 0.8rem; color: #aaa;">Đưa nhóm qua sông an toàn trong bóng đêm</p>
+                <div class="rules">
+                    <span>🔦 Cần đèn pin</span>
+                    <span>🚶 Tối đa 2 người</span>
+                    <span>⏱️ Mục tiêu: 17 phút</span>
+                </div>
+            </header>
+
+            <div class="timer-container">
+                <h2>TỔNG THỜI GIAN</h2>
+                <div class="time-display" id="time-display">00</div>
+                <span style="font-size: 0.7rem; color: #88c0d0; opacity: 0.6;">PHÚT</span>
+            </div>
+
+            <div class="game-board">
+                <div class="side" id="start-side">
+                    <h3>Bờ xuất phát</h3>
+                    <div class="chars-container" id="chars-start"></div>
+                </div>
+
+                <div class="controls">
+                    <div id="message">Chọn thành viên...</div>
+                    <button id="go-btn" class="btn primary-btn" disabled>BẮT ĐẦU ĐI ➔</button>
+                    <button id="reset-btn" class="btn secondary-btn">Bỏ cuộc / Chơi lại</button>
+                </div>
+
+                <div class="side" id="end-side">
+                    <h3>Bờ bên kia</h3>
+                    <div class="chars-container" id="chars-end"></div>
+                </div>
+            </div>
+
+            <div id="intro-overlay">
+                <div class="intro-box">
+                    <div class="intro-icon">🔦</div>
+                    <h2>HƯỚNG DẪN CHƠI</h2>
+                    <p>Chào mừng bạn đến với thử thách Qua Cầu Đêm!</p>
+                    <div class="intro-text">
+                        Bạn cần dắt 4 người bạn qua cầu an toàn, nhưng hãy nhớ: nhóm chỉ có <strong>1 chiếc đèn pin</strong> duy nhất và mỗi lần đi tối đa <strong>2 người</strong>.
+                    </div>
+                    <p style="color: var(--primary); font-weight: 600; margin-top: 10px;">
+                        Mục tiêu: Dắt mọi người qua với tổng số phút ít nhất!
+                    </p>
+                    <button id="start-game-btn" class="btn primary-btn" style="margin-top: 2rem; width: 100%;">TÔI ĐÃ HIỂU, CHƠI NGAY!</button>
+                </div>
+            </div>
+
+            <div id="result-overlay" class="hidden">
+                <div class="result-box">
+                    <h2 id="result-title">Hoàn thành!</h2>
+                    <p id="result-desc">Mọi người đã qua cầu thành công.</p>
+                    <p id="result-time" class="final-time">17 phút</p>
+                    <button id="close-result" class="btn primary-btn">THỬ LẠI</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tải mã nguồn Game -->
+    <script src="game.js"></script>
+</body>
+</html>
